@@ -2,21 +2,32 @@
 
 function renderCoffee(coffee) {
     var html = '';
-    html += '<div class="col-6"><h1>' + coffee.name + '</h1><p>' +  coffee.roast + '</p></div>';
+    html += '<div class="col-6 text-light"><h1>' + coffee.name + '</h1><p>' +  coffee.roast + '</p></div>';
     return html;
 }
 
 function renderCoffees(coffees) {
     var html = '';
-        //Changed order from last to first, to first to last
-        for (var i = 0; i < coffees.length; i++) {
+    for (var i = 0; i < coffees.length; i++) {
+        if (coffees[i].roast === "light") {
             html += renderCoffee(coffees[i]);
         }
-        return html;
     }
+    for (var i = 0; i < coffees.length; i++) {
+        if (coffees[i].roast === "medium") {
+            html += renderCoffee(coffees[i]);
+        }
+    }
+    for (var i = 0; i < coffees.length; i++) {
+        if (coffees[i].roast === "dark") {
+            html += renderCoffee(coffees[i]);
+        }
+    }
+        return html;
+}
 
 function updateCoffees(e) {
-    e.preventDefault(); // don't submit the form, we just want to update the data
+    // e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
     var selectedName = nameSelection.value.toLowerCase();
     var filteredCoffees = [];
@@ -31,6 +42,7 @@ function updateCoffees(e) {
     });
     divBody.innerHTML = renderCoffees(filteredCoffees);
 }
+
 function renderList(coffees){
     var html = '';
     coffees.forEach(function (coffee)
@@ -49,7 +61,6 @@ function renderRoastList(roasts){
     return html;
 }
 
-
 function addCoffee(e){
     e.preventDefault();
     var newCoffee = {
@@ -59,12 +70,10 @@ function addCoffee(e){
     };
     if (/\S/.test(newCoffee.name)){
     coffees.push(newCoffee);
-    updateCoffees(e);
-    console.log(coffees);
-    deleteCoffeeName.innerHTML = renderList(coffees);
-    originalCoffeeName.innerHTML = renderList(coffees);
+    updateAll();
     }
 }
+
 function deleteCoffee(e){
     e.preventDefault();
     coffees.forEach(function (coffee, index){
@@ -72,9 +81,7 @@ function deleteCoffee(e){
             coffees.splice(index,1);
         }
     })
-    updateCoffees(e);
-    deleteCoffeeName.innerHTML = renderList(coffees);
-    originalCoffeeName.innerHTML = renderList(coffees);
+    updateAll();
 }
 
 function editCoffee(e){
@@ -85,9 +92,7 @@ function editCoffee(e){
             coffee.roast = editedCoffeeRoast.value;
         }
     })
-    updateCoffees(e);
-    deleteCoffeeName.innerHTML = renderList(coffees);
-    originalCoffeeName.innerHTML = renderList(coffees);
+    updateAll();
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
@@ -114,6 +119,7 @@ var roasts = [
     'dark'
 ]
 
+// main body
 var divBody = document.querySelector('#coffees');
 
 // searching for coffee
@@ -126,29 +132,35 @@ var addSubmitButton = document.querySelector('#add-submit');
 var addRoastSelection = document.querySelector('#add-coffee-roast');
 var addNameSelection = document.querySelector('#add-coffee-name');
 
-//delete a coffee
+// delete a coffee
 var deleteCoffeeName = document.querySelector('#delete-coffee-roast')
 var deleteSubmitButton = document.querySelector('#delete-submit');
 
-//edit a coffee
+// edit a coffee
 var originalCoffeeName = document.querySelector('#original-coffee');
 var editedCoffeeName = document.querySelector('#new-coffee-name');
 var editedCoffeeRoast = document.querySelector('#new-coffee-roast');
 var editSubmitButton = document.querySelector('#edit-coffee-submit');
 
-
+// on submit, update coffees
 submitButton.addEventListener('click', updateCoffees);
+// if change selection on search, update coffees making submit button redundant
 roastSelection.addEventListener('change', updateCoffees);
 nameSelection.addEventListener('keyup', updateCoffees);
 
-
+// buttons for add, delete, and edit
 addSubmitButton.addEventListener("click", addCoffee);
 deleteSubmitButton.addEventListener("click", deleteCoffee);
 editSubmitButton.addEventListener('click', editCoffee);
 
 // initialization function
-divBody.innerHTML = renderCoffees(coffees);
-deleteCoffeeName.innerHTML = renderList(coffees);
-originalCoffeeName.innerHTML = renderList(coffees);
-editedCoffeeRoast.innerHTML = renderRoastList(roasts);
+function updateAll(){
+    deleteCoffeeName.innerHTML = renderList(coffees);
+    originalCoffeeName.innerHTML = renderList(coffees);
+    editedCoffeeRoast.innerHTML = renderRoastList(roasts);
+    divBody.innerHTML = renderCoffees(coffees);
+    updateCoffees();
+}
+updateAll();
+
 

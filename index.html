@@ -8,25 +8,22 @@
 </head>
 <body class="container">
     <h1 class="text-center">Coffee!</h1>
-<!--added hr-->
     <hr>
-<!--divide into columns-->
     <div class="row">
         <div class="col-6">
             <div class="row">
                 <div class="col-12 text-center">
-                    <div class="row" id="coffees">
-                    </div>
+                    <div class="row" id="coffees"></div>
                 </div>
             </div>
         </div>
         <div class="col-6">
+<!--            Search for Coffee-->
             <div class="card">
                 <form class="card-body">
                     <h1 class="text-center">Search for coffee</h1>
                     <label for="roast-selection" class="font-weight-bold m-1">Roast</label>
                     <select id="roast-selection" class="col-12 btn-lg">
-                        <!--Added option for all roasts-->
                         <option>all</option>
                         <option>light</option>
                         <option>medium</option>
@@ -37,49 +34,39 @@
                     <input id="submit" class="col-12 btn-primary btn-lg" type="submit" />
                 </form>
             </div>
+<!--            Add a Coffee-->
             <div class="card">
                 <form class="card-body">
                     <h1 class="text-center">Add a coffee</h1>
                     <label for="add-coffee-roast" class="font-weight-bold m-1">Roast</label>
                     <select id="add-coffee-roast" class="col-12 btn-lg">
-                        <!--Added option for all roasts-->
                         <option>light</option>
                         <option>medium</option>
                         <option>dark</option>
                     </select>
                     <label for="add-coffee-name" class="font-weight-bold m-1">Name</label>
-                    <input id="add-coffee-name" placeholder="Name of your coffee..." type="text"
-                    class="btn-lg mb-2 col-12"/>
-
+                    <input id="add-coffee-name" placeholder="Name of your coffee..." type="text" class="btn-lg mb-2 col-12"/>
                     <input id="add-submit" type="submit" class="btn-warning btn-lg col-12"/>
                 </form>
             </div>
+<!--            Delete a Coffee-->
             <div class="card">
                 <form class="card-body">
                     <h1 class="text-center">Delete a coffee</h1>
                     <label for="add-coffee-roast" class="font-weight-bold m-1">Coffee</label>
-                    <select id="delete-coffee-roast" class="col-12 btn-lg mb-2">
-                    </select>
+                    <select id="delete-coffee-roast" class="col-12 btn-lg mb-2"></select>
                     <input id="delete-submit" type="submit" class="btn-danger btn-lg col-12"/>
                 </form>
             </div>
-<!--            EDIT A COFFEE-->
+<!--            Edit a Coffee-->
             <div class="card">
                 <form class="card-body">
                     <h1 class="text-center">Edit a Coffee</h1>
-                    <label for="original-coffee" class="font-weight-bold m-1">
-                        Coffee To Edit
-                    </label>
-                    <select id="original-coffee" class="col-12 btn-lg mb-2">
-                    </select>
-                    <label for="new-coffee-roast" class="font-weight-bold m-1">
-                        New Coffee Roast
-                    </label>
-                    <select id="new-coffee-roast" class="col-12 btn-lg mb-2">
-                    </select>
-                    <label for="new-coffee-name" class="font-weight-bold m-1">
-                        New Coffee Name
-                    </label>
+                    <label for="original-coffee" class="font-weight-bold m-1">Coffee To Edit</label>
+                    <select id="original-coffee" class="col-12 btn-lg mb-2"></select>
+                    <label for="new-coffee-roast" class="font-weight-bold m-1">New Coffee Roast</label>
+                    <select id="new-coffee-roast" class="col-12 btn-lg mb-2"></select>
+                    <label for="new-coffee-name" class="font-weight-bold m-1">New Coffee Name</label>
                     <input id="new-coffee-name" type="text" class="btn-lg col-12 mb-2"/>
                     <input id="edit-coffee-submit" type="submit" class="btn-secondary btn-lg col-12">
                 </form>
