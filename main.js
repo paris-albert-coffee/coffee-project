@@ -2,7 +2,15 @@
 
 function renderCoffee(coffee) {
     var html = '';
-    html += '<div class="col-6 text-light"><h1>' + coffee.name + '</h1><p>' +  coffee.roast + '</p></div>';
+    if (coffee.roast === "light"){
+        html += '<div class="col-12 col-xl-5 text-light border border-warning m-1"><h1 class="font-weight-light">' + coffee.name + '</h1><p class="font-italic">' +  coffee.roast + '</p></div>';
+    }
+    if (coffee.roast === "medium"){
+        html += '<div class="col-12 col-xl-5 text-light border border-primary m-1"><h1 class="font-weight-light">' + coffee.name + '</h1><p class="font-italic">' +  coffee.roast + '</p></div>';
+    }
+    if (coffee.roast === "dark"){
+        html += '<div class="col-12 col-xl-5 text-light border border m-1"><h1 class="font-weight-light">' + coffee.name + '</h1><p class="font-italic">' +  coffee.roast + '</p></div>';
+    }
     return html;
 }
 
